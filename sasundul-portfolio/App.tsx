@@ -38,6 +38,60 @@ const SKILLS: Skill[] = [
   { name: 'Docker', level: 'Basics', category: 'Tools' },
 ];
 
+/// Hariyata Dammoth 
+// const SKILLS: Skill[] = [
+//   // Programming Languages
+//   { name: 'Java', level: 'Advanced', category: 'Programming Languages' },
+//   { name: 'JavaFX', level: 'Intermediate', category: 'Programming Languages' },
+//   { name: 'JavaScript', level: 'Advanced', category: 'Programming Languages' },
+//   { name: 'HTML5', level: 'Advanced', category: 'Programming Languages' },
+//   { name: 'CSS3', level: 'Advanced', category: 'Programming Languages' },
+//   { name: 'PHP', level: 'Intermediate', category: 'Programming Languages' },
+//   { name: 'SQL', level: 'Advanced', category: 'Programming Languages' },
+//   { name: 'PL/SQL', level: 'Intermediate', category: 'Programming Languages' },
+//   { name: 'C++', level: 'Intermediate', category: 'Programming Languages' },
+//   { name: 'C#', level: 'Intermediate', category: 'Programming Languages' },
+//   { name: 'Python', level: 'Beginner', category: 'Programming Languages' },
+//   { name: 'Rust', level: 'Beginner', category: 'Programming Languages' },
+
+//   // Frameworks & APIs
+//   { name: 'React.js', level: 'Advanced', category: 'Frameworks & APIs' },
+//   { name: 'Angular', level: 'Intermediate', category: 'Frameworks & APIs' },
+//   { name: 'Bootstrap', level: 'Advanced', category: 'Frameworks & APIs' },
+//   { name: 'Tailwind CSS', level: 'Advanced', category: 'Frameworks & APIs' },
+//   { name: 'Spring Boot', level: 'Advanced', category: 'Frameworks & APIs' },
+//   { name: 'Node.js', level: 'Intermediate', category: 'Frameworks & APIs' },
+//   { name: 'ORDS', level: 'Intermediate', category: 'Frameworks & APIs' },
+//   { name: 'FastAPI', level: 'Intermediate', category: 'Frameworks & APIs' },
+//   { name: 'RESTful API', level: 'Advanced', category: 'Frameworks & APIs' },
+
+//   // Databases
+//   { name: 'MySQL', level: 'Advanced', category: 'Databases' },
+//   { name: 'MS SQL Server', level: 'Intermediate', category: 'Databases' },
+//   { name: 'PostgreSQL', level: 'Intermediate', category: 'Databases' },
+//   { name: 'MongoDB', level: 'Intermediate', category: 'Databases' },
+//   { name: 'Firebase', level: 'Intermediate', category: 'Databases' },
+//   { name: 'Supabase', level: 'Intermediate', category: 'Databases' },
+
+//   // Mobile Development
+//   { name: 'Android (Java)', level: 'Intermediate', category: 'Mobile Development' },
+//   { name: 'XML', level: 'Intermediate', category: 'Mobile Development' },
+//   { name: 'Kotlin', level: 'Intermediate', category: 'Mobile Development' },
+//   { name: 'React Native', level: 'Intermediate', category: 'Mobile Development' },
+//   { name: 'Flutter', level: 'Beginner', category: 'Mobile Development' },
+
+//   // Tools & Platforms
+//   { name: 'GitHub', level: 'Advanced', category: 'Tools' },
+//   { name: 'Docker', level: 'Basics', category: 'Tools' },
+//   { name: 'Jira', level: 'Intermediate', category: 'Tools' },
+//   { name: 'Postman', level: 'Advanced', category: 'Tools' },
+//   { name: 'VS Code', level: 'Advanced', category: 'Tools' },
+//   { name: 'Visual Studio', level: 'Intermediate', category: 'Tools' },
+//   { name: 'Android Studio', level: 'Advanced', category: 'Tools' },
+//   { name: 'IntelliJ IDEA', level: 'Advanced', category: 'Tools' },
+//   { name: 'Figma', level: 'Intermediate', category: 'Tools' },
+//   { name: 'Unity', level: 'Beginner', category: 'Tools' },
+// ];
 
 const PROJECTS: Project[] = [
   {
@@ -281,13 +335,13 @@ const App: React.FC = () => {
 
         <Marquee />
 
-        {/* Selected Works Section */}
+        {/* My Works Section */}
         <section id="projects" className="py-24 md:py-32 relative bg-white dark:bg-wa-dark">
           <div className="container mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
               <div>
                 <h2 className="text-5xl md:text-7xl font-display font-bold text-slate-900 dark:text-white mb-2">
-                  SELECTED <span className="text-wa-green">WORKS</span>
+                  MY <span className="text-wa-green">WORKS</span>
                 </h2>
                 <div className="h-2 w-24 bg-wa-green"></div>
               </div>
