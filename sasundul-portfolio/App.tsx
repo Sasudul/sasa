@@ -93,34 +93,34 @@ const SKILLS: Skill[] = [
 //   { name: 'Unity', level: 'Beginner', category: 'Tools' },
 // ];
 
-cconst PROJECTS: Project[] = [
+const PROJECTS: Project[] = [
   {
     title: "SENERATH PHARMACY",
     category: "ENTERPRISE",
     description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
     tech: ["React", "PostgreSQL", "Spring Boot"],
-    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=1200&auto=format&fit=crop"
+    image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/21daf6206621873.66cf6dbb8c24f.png?q=80&w=1200&auto=format&fit=crop"
   },
   {
     title: "FLEET TRACKING",
     category: "LOGISTICS",
     description: "Real-time vehicle monitoring interface utilizing Google Maps API and WebSocket integration.",
     tech: ["React", "Firebase", "Google Maps"],
-    image: "https://images.unsplash.com/photo-1509100194014-d49809396daa?q=80&w=1200&auto=format&fit=crop"
+    image: "https://th.bing.com/th/id/R.c55e51265b71a0b554f38848d3057b27?rik=9MG3FyMQ2i%2bc%2bg&pid=ImgRaw&r=0?q=80&w=1200&auto=format&fit=crop"
   },
   {
     title: "LANDSLIDE WARNING",
     category: "IOT / EMBEDDED",
     description: "Automated alert system processing data from hardware sensors to detect environmental anomalies.",
     tech: ["C++", "IoT Sensors", "Data Analysis"],
-    image: "https://images.unsplash.com/photo-1524169358666-79f22534bc6e?q=80&w=1200&auto=format&fit=crop"
+    image: "https://i.ytimg.com/vi/5wjgNQAs8Mw/maxresdefault.jpg?q=80&w=1200&auto=format&fit=crop"
   },
   {
     title: "NATO MINI MART",
     category: "E-COMMERCE",
     description: "Digital transformation project migrating a physical retail store to a custom web platform.",
     tech: ["PHP", "MySQL", "Bootstrap"],
-    image: "https://images.unsplash.com/photo-1534452203294-49c8ad160ee2?q=80&w=1200&auto=format&fit=crop"
+    image: "https://tse2.mm.bing.net/th/id/OIP.H8W2js8zv6YDePBJ776v0AAAAA?w=412&h=480&rs=1&pid=ImgDetMain&o=7&rm=3?q=80&w=1200&auto=format&fit=crop"
   }
 ];
 
