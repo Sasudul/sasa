@@ -93,34 +93,34 @@ const SKILLS: Skill[] = [
 //   { name: 'Unity', level: 'Beginner', category: 'Tools' },
 // ];
 
-const PROJECTS: Project[] = [
+cconst PROJECTS: Project[] = [
   {
     title: "SENERATH PHARMACY",
     category: "ENTERPRISE",
     description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
     tech: ["React", "PostgreSQL", "Spring Boot"],
-    image: "https://placeholder/800/600?"
+    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbbb88?q=80&w=1200&auto=format&fit=crop"
   },
   {
     title: "FLEET TRACKING",
     category: "LOGISTICS",
     description: "Real-time vehicle monitoring interface utilizing Google Maps API and WebSocket integration.",
     tech: ["React", "Firebase", "Google Maps"],
-    image: "https://placeholder/800/600?"
+    image: "https://images.unsplash.com/photo-1509100194014-d49809396daa?q=80&w=1200&auto=format&fit=crop"
   },
   {
     title: "LANDSLIDE WARNING",
     category: "IOT / EMBEDDED",
     description: "Automated alert system processing data from hardware sensors to detect environmental anomalies.",
     tech: ["C++", "IoT Sensors", "Data Analysis"],
-    image: "https://placeholder/800/600?"
+    image: "https://images.unsplash.com/photo-1524169358666-79f22534bc6e?q=80&w=1200&auto=format&fit=crop"
   },
   {
     title: "NATO MINI MART",
     category: "E-COMMERCE",
     description: "Digital transformation project migrating a physical retail store to a custom web platform.",
     tech: ["PHP", "MySQL", "Bootstrap"],
-    image: "https://placeholder/800/600?"
+    image: "https://images.unsplash.com/photo-1534452203294-49c8ad160ee2?q=80&w=1200&auto=format&fit=crop"
   }
 ];
 
