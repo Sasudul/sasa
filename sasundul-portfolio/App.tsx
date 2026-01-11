@@ -1,6 +1,7 @@
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowUpRight,
+  ChevronLeft, // Added for pagination
   ChevronRight,
   ExternalLink,
   Github,
@@ -38,61 +39,6 @@ const SKILLS: Skill[] = [
   { name: 'Docker', level: 'Basics', category: 'Tools' },
 ];
 
-/// Hariyata Dammoth 
-// const SKILLS: Skill[] = [
-//   // Programming Languages
-//   { name: 'Java', level: 'Advanced', category: 'Programming Languages' },
-//   { name: 'JavaFX', level: 'Intermediate', category: 'Programming Languages' },
-//   { name: 'JavaScript', level: 'Advanced', category: 'Programming Languages' },
-//   { name: 'HTML5', level: 'Advanced', category: 'Programming Languages' },
-//   { name: 'CSS3', level: 'Advanced', category: 'Programming Languages' },
-//   { name: 'PHP', level: 'Intermediate', category: 'Programming Languages' },
-//   { name: 'SQL', level: 'Advanced', category: 'Programming Languages' },
-//   { name: 'PL/SQL', level: 'Intermediate', category: 'Programming Languages' },
-//   { name: 'C++', level: 'Intermediate', category: 'Programming Languages' },
-//   { name: 'C#', level: 'Intermediate', category: 'Programming Languages' },
-//   { name: 'Python', level: 'Beginner', category: 'Programming Languages' },
-//   { name: 'Rust', level: 'Beginner', category: 'Programming Languages' },
-
-//   // Frameworks & APIs
-//   { name: 'React.js', level: 'Advanced', category: 'Frameworks & APIs' },
-//   { name: 'Angular', level: 'Intermediate', category: 'Frameworks & APIs' },
-//   { name: 'Bootstrap', level: 'Advanced', category: 'Frameworks & APIs' },
-//   { name: 'Tailwind CSS', level: 'Advanced', category: 'Frameworks & APIs' },
-//   { name: 'Spring Boot', level: 'Advanced', category: 'Frameworks & APIs' },
-//   { name: 'Node.js', level: 'Intermediate', category: 'Frameworks & APIs' },
-//   { name: 'ORDS', level: 'Intermediate', category: 'Frameworks & APIs' },
-//   { name: 'FastAPI', level: 'Intermediate', category: 'Frameworks & APIs' },
-//   { name: 'RESTful API', level: 'Advanced', category: 'Frameworks & APIs' },
-
-//   // Databases
-//   { name: 'MySQL', level: 'Advanced', category: 'Databases' },
-//   { name: 'MS SQL Server', level: 'Intermediate', category: 'Databases' },
-//   { name: 'PostgreSQL', level: 'Intermediate', category: 'Databases' },
-//   { name: 'MongoDB', level: 'Intermediate', category: 'Databases' },
-//   { name: 'Firebase', level: 'Intermediate', category: 'Databases' },
-//   { name: 'Supabase', level: 'Intermediate', category: 'Databases' },
-
-//   // Mobile Development
-//   { name: 'Android (Java)', level: 'Intermediate', category: 'Mobile Development' },
-//   { name: 'XML', level: 'Intermediate', category: 'Mobile Development' },
-//   { name: 'Kotlin', level: 'Intermediate', category: 'Mobile Development' },
-//   { name: 'React Native', level: 'Intermediate', category: 'Mobile Development' },
-//   { name: 'Flutter', level: 'Beginner', category: 'Mobile Development' },
-
-//   // Tools & Platforms
-//   { name: 'GitHub', level: 'Advanced', category: 'Tools' },
-//   { name: 'Docker', level: 'Basics', category: 'Tools' },
-//   { name: 'Jira', level: 'Intermediate', category: 'Tools' },
-//   { name: 'Postman', level: 'Advanced', category: 'Tools' },
-//   { name: 'VS Code', level: 'Advanced', category: 'Tools' },
-//   { name: 'Visual Studio', level: 'Intermediate', category: 'Tools' },
-//   { name: 'Android Studio', level: 'Advanced', category: 'Tools' },
-//   { name: 'IntelliJ IDEA', level: 'Advanced', category: 'Tools' },
-//   { name: 'Figma', level: 'Intermediate', category: 'Tools' },
-//   { name: 'Unity', level: 'Beginner', category: 'Tools' },
-// ];
-
 const PROJECTS: Project[] = [
   {
     title: "SENERATH PHARMACY",
@@ -121,7 +67,37 @@ const PROJECTS: Project[] = [
     description: "Digital transformation project migrating a physical retail store to a custom web platform.",
     tech: ["PHP", "MySQL", "Bootstrap"],
     image: "https://tse2.mm.bing.net/th/id/OIP.H8W2js8zv6YDePBJ776v0AAAAA?w=412&h=480&rs=1&pid=ImgDetMain&o=7&rm=3?q=80&w=1200&auto=format&fit=crop"
-  }
+  },{
+    title: "Pizza Mania",
+    category: "ENTERPRISE",
+    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
+    tech: ["XML", "JAVA", "SQLite"],
+    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
+    },{
+    title: "Pizza Mania",
+    category: "ENTERPRISE",
+    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
+    tech: ["XML", "JAVA", "SQLite"],
+    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
+    },{
+    title: "Pizza Mania",
+    category: "ENTERPRISE",
+    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
+    tech: ["XML", "JAVA", "SQLite"],
+    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
+    },{
+    title: "Pizza Mania",
+    category: "ENTERPRISE",
+    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
+    tech: ["XML", "JAVA", "SQLite"],
+    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
+    },{
+    title: "Pizza Mania",
+    category: "ENTERPRISE",
+    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
+    tech: ["XML", "JAVA", "SQLite"],
+    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
+    }
 ];
 
 const EXPERIENCE: ExperienceItem[] = [
@@ -240,10 +216,32 @@ const Navbar: React.FC = () => {
 
 // --- Main App ---
 
+const ITEMS_PER_PAGE = 4;
+
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
+
+  // --- Pagination State ---
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  // Calculate Pagination Logic
+  const totalPages = Math.ceil(PROJECTS.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentProjects = PROJECTS.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const handleNext = () => {
+    if (currentPage < totalPages) setCurrentPage(prev => prev + 1);
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 1) setCurrentPage(prev => prev - 1);
+  };
+
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -350,63 +348,114 @@ const App: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-              {PROJECTS.map((project, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{ delay: idx * 0.1, duration: 0.6 }}
-                  className="group relative"
-                >
-                  {/* Card Container with Tilt Effect Mockup */}
-                  <div className="relative w-full aspect-[4/3] bg-slate-100 dark:bg-wa-card rounded-xl overflow-hidden mb-8 perspective-1000 group-hover:shadow-2xl group-hover:shadow-wa-green/20 transition-all duration-500">
-                    
-                    {/* Background Pattern */}
-                    <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#25D366_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            {/* Pagination Grid Wrapper */}
+            <div className="min-h-[800px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+                  <AnimatePresence mode="wait">
+                    {currentProjects.map((project, idx) => (
+                      <motion.div
+                        key={`${currentPage}-${idx}`} // Force re-render on page change
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ delay: idx * 0.1, duration: 0.6 }}
+                        className="group relative"
+                      >
+                        {/* Card Container with Tilt Effect Mockup */}
+                        <div className="relative w-full aspect-[4/3] bg-slate-100 dark:bg-wa-card rounded-xl overflow-hidden mb-8 perspective-1000 group-hover:shadow-2xl group-hover:shadow-wa-green/20 transition-all duration-500">
+                          
+                          {/* Background Pattern */}
+                          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#25D366_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
-                    {/* The "Elevated" Preview Image */}
-                    <div className="absolute inset-8 transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-700 ease-out origin-bottom">
-                       <div className="w-full h-full relative rounded-lg overflow-hidden shadow-2xl border border-black/10 dark:border-white/10 bg-slate-800">
-                          <img 
-                            src={project.image} 
-                            alt={project.title}
-                            className="w-full h-full object-cover"
-                          />
-                          {/* Screen Reflection Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
-                       </div>
-                    </div>
+                          {/* The "Elevated" Preview Image */}
+                          <div className="absolute inset-8 transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-700 ease-out origin-bottom">
+                             <div className="w-full h-full relative rounded-lg overflow-hidden shadow-2xl border border-black/10 dark:border-white/10 bg-slate-800">
+                                <img 
+                                  src={project.image} 
+                                  alt={project.title}
+                                  className="w-full h-full object-cover"
+                                />
+                                {/* Screen Reflection Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+                             </div>
+                          </div>
 
-                    {/* Overlay Tag */}
-                    <div className="absolute top-6 right-6 z-20">
-                      <div className="bg-wa-green text-wa-dark font-bold text-xs px-3 py-1 uppercase tracking-wider rounded-sm">
-                        {project.category}
-                      </div>
-                    </div>
-                  </div>
+                          {/* Overlay Tag */}
+                          <div className="absolute top-6 right-6 z-20">
+                            <div className="bg-wa-green text-wa-dark font-bold text-xs px-3 py-1 uppercase tracking-wider rounded-sm">
+                              {project.category}
+                            </div>
+                          </div>
+                        </div>
 
-                  {/* Project Info */}
-                  <div className="flex flex-col gap-2">
-                    <h3 className="text-3xl font-display font-bold text-slate-900 dark:text-white group-hover:text-wa-green transition-colors flex items-center gap-3">
-                      {project.title}
-                      <ExternalLink size={20} className="opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-1" />
-                    </h3>
-                    <p className="text-slate-600 dark:text-wa-gray line-clamp-2 mb-4">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((t, i) => (
-                        <span key={i} className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500 border border-slate-200 dark:border-white/10 px-2 py-1">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                        {/* Project Info */}
+                        <div className="flex flex-col gap-2">
+                          <h3 className="text-3xl font-display font-bold text-slate-900 dark:text-white group-hover:text-wa-green transition-colors flex items-center gap-3">
+                            {project.title}
+                            <ExternalLink size={20} className="opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-1" />
+                          </h3>
+                          <p className="text-slate-600 dark:text-wa-gray line-clamp-2 mb-4">
+                            {project.description}
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            {project.tech.map((t, i) => (
+                              <span key={i} className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500 border border-slate-200 dark:border-white/10 px-2 py-1">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
             </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="mt-20 flex flex-col md:flex-row justify-center items-center gap-6">
+                
+                {/* Previous Button */}
+                <button
+                  onClick={handlePrev}
+                  disabled={currentPage === 1}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs transition-all
+                  ${currentPage === 1 
+                    ? 'opacity-50 cursor-not-allowed text-slate-400' 
+                    : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-900 dark:text-white'}`}
+                >
+                  <ChevronLeft size={16} /> Prev
+                </button>
+
+                {/* Page Numbers */}
+                <div className="flex gap-2">
+                  {[...Array(totalPages)].map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handlePageChange(i + 1)}
+                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all
+                      ${currentPage === i + 1
+                        ? 'bg-wa-green text-wa-dark shadow-lg shadow-wa-green/20 scale-110' 
+                        : 'bg-slate-100 dark:bg-white/5 text-slate-500 hover:bg-slate-200 dark:hover:bg-white/10'}`}
+                    >
+                      {i + 1}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Next Button */}
+                <button
+                  onClick={handleNext}
+                  disabled={currentPage === totalPages}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs transition-all
+                  ${currentPage === totalPages 
+                    ? 'opacity-50 cursor-not-allowed text-slate-400' 
+                    : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-900 dark:text-white'}`}
+                >
+                  Next <ChevronRight size={16} />
+                </button>
+              </div>
+            )}
           </div>
         </section>
 
@@ -428,10 +477,10 @@ const App: React.FC = () => {
                   className="bg-white dark:bg-wa-card p-6 border-l-4 border-wa-green hover:bg-wa-green/10 transition-colors group"
                 >
                   <div className="mb-4 text-slate-400 dark:text-wa-gray group-hover:text-wa-green transition-colors">
-                     {skill.category === 'Frontend' ? <Layout size={32} /> :
-                     skill.category === 'Backend' ? <Server size={32} /> :
-                     skill.category === 'Mobile' ? <Smartphone size={32} /> :
-                     <Terminal size={32} />}
+                      {skill.category === 'Frontend' ? <Layout size={32} /> :
+                      skill.category === 'Backend' ? <Server size={32} /> :
+                      skill.category === 'Mobile' ? <Smartphone size={32} /> :
+                      <Terminal size={32} />}
                   </div>
                   <h3 className="text-xl font-display font-bold text-slate-900 dark:text-white uppercase mb-1">{skill.name}</h3>
                   <div className="flex justify-between items-center">
@@ -492,11 +541,11 @@ const App: React.FC = () => {
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
            
            <div className="container mx-auto px-6 relative z-10 text-center">
-              <h2 className="text-6xl md:text-9xl font-display font-bold text-white/10 uppercase mb-8 select-none">
-                Let's Talk
-              </h2>
-              
-              <div className="max-w-2xl mx-auto -mt-12 md:-mt-24 relative">
+             <h2 className="text-6xl md:text-9xl font-display font-bold text-white/10 uppercase mb-8 select-none">
+               Let's Talk
+             </h2>
+             
+             <div className="max-w-2xl mx-auto -mt-12 md:-mt-24 relative">
                  <h3 className="text-3xl md:text-5xl font-display font-bold text-white mb-8">
                    READY TO START YOUR NEXT PROJECT?
                  </h3>
@@ -506,19 +555,19 @@ const App: React.FC = () => {
                  >
                    <Mail size={18} /> Send an Email
                  </a>
-              </div>
+             </div>
 
-              <div className="mt-24 flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-8 gap-6">
-                <div className="text-sm text-gray-500 font-mono uppercase">
-                  © 2025 Sasundul Wanasinghe
-                </div>
-                
-                <div className="flex gap-6">
+             <div className="mt-24 flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-8 gap-6">
+               <div className="text-sm text-gray-500 font-mono uppercase">
+                 © 2025 Sasundul Wanasinghe
+               </div>
+               
+               <div className="flex gap-6">
                    <a href="#" className="text-gray-400 hover:text-wa-green transition-colors"><Github /></a>
                    <a href="#" className="text-gray-400 hover:text-wa-green transition-colors"><Linkedin /></a>
                    <a href="#" className="text-gray-400 hover:text-wa-green transition-colors"><MapPin /></a>
-                </div>
-              </div>
+               </div>
+             </div>
            </div>
         </footer>
       </div>
