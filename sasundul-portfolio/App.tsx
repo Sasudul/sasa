@@ -1,14 +1,16 @@
 import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
 import {
+  ArrowUp,
   ArrowUpRight,
-  ChevronLeft, // Added for pagination
+  ChevronLeft,
   ChevronRight,
+  Copy,
   ExternalLink,
   Github,
   Layout,
   Linkedin, Mail,
-  MapPin,
   Menu,
+  MessageCircle,
   Server,
   Smartphone, Terminal,
   X
@@ -537,37 +539,98 @@ const App: React.FC = () => {
         </section>
 
         {/* Contact / Footer */}
-        <footer id="contact" className="bg-slate-900 dark:bg-[#050b0e] text-white py-24 relative overflow-hidden">
-           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
+        <footer id="contact" className="bg-slate-900 dark:bg-[#050b0e] text-white pt-24 pb-12 relative overflow-hidden border-t border-white/10">
            
-           <div className="container mx-auto px-6 relative z-10 text-center">
-             <h2 className="text-6xl md:text-9xl font-display font-bold text-white/10 uppercase mb-8 select-none">
-               Let's Talk
-             </h2>
+           {/* Background Grid Pattern */}
+           <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] [background-size:24px_24px]"></div>
+           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-slate-900/80 dark:to-[#050b0e] pointer-events-none"></div>
+
+           <div className="container mx-auto px-6 relative z-10">
              
-             <div className="max-w-2xl mx-auto -mt-12 md:-mt-24 relative">
-                 <h3 className="text-3xl md:text-5xl font-display font-bold text-white mb-8">
-                   READY TO START YOUR NEXT PROJECT?
-                 </h3>
-                 <a 
-                  href="mailto:sasuduln@gmail.com" 
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-wa-green hover:bg-wa-teal text-wa-dark font-bold uppercase tracking-widest text-sm transition-all hover:scale-105"
-                 >
-                   <Mail size={18} /> Send an Email
-                 </a>
+             <div className="grid md:grid-cols-2 gap-12 md:gap-24 mb-24">
+                {/* Left Column: Call to Action */}
+                <div className="space-y-8">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-wa-green/10 border border-wa-green/20 text-wa-green text-xs font-bold uppercase tracking-widest">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-wa-green opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-wa-green"></span>
+                    </span>
+                    Available for Work
+                  </div>
+                  
+                  <h2 className="text-5xl md:text-7xl font-display font-bold leading-tight">
+                    HAVE AN IDEA? <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-wa-green to-teal-400">
+                      LET'S BUILD IT.
+                    </span>
+                  </h2>
+
+                  <p className="text-slate-400 max-w-md text-lg leading-relaxed">
+                    Currently specializing in enterprise architecture and high-performance web applications. Open to freelance and full-time opportunities.
+                  </p>
+                </div>
+
+               {/* Right Column: Interactive Contact */}
+                <div className="flex flex-col justify-center space-y-8">
+                   {/* Email Copy Box */}
+                   <div className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-wa-green/50 transition-colors group">
+                      <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Drop me a line</div>
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="text-xl md:text-2xl font-mono text-white group-hover:text-wa-green transition-colors">
+                          sasuduln@gmail.com
+                        </span>
+                        <button 
+                          onClick={() => {
+                            navigator.clipboard.writeText('sasuduln@gmail.com');
+                          }}
+                          className="p-3 bg-white/10 hover:bg-wa-green hover:text-wa-dark rounded-xl transition-all active:scale-95"
+                          aria-label="Copy Email"
+                        >
+                          <Copy size={20} />
+                        </button>
+                      </div>
+                   </div>
+
+                   {/* Social Links Grid */}
+                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {[
+                        { icon: <Github size={24} />, label: "GitHub", href: "https://github.com/Sasudul" },
+                        { icon: <Linkedin size={24} />, label: "LinkedIn", href: "https://www.linkedin.com/in/sasundul/" },
+                        { icon: <MessageCircle size={24} />, label: "WhatsApp", href: "https://wa.me/940629020" },
+                        { icon: <Mail size={24} />, label: "Email", href: "mailto:sasuduln@gmail.com" }
+                      ].map((social, idx) => (
+                        <a 
+                          key={idx}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-col items-center justify-center gap-3 p-6 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:-translate-y-1 transition-all group"
+                        >
+                          <span className="text-slate-400 group-hover:text-wa-green transition-colors">{social.icon}</span>
+                          <span className="text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-white transition-colors">{social.label}</span>
+                        </a>
+                      ))}
+                   </div>
+                </div>
              </div>
 
-             <div className="mt-24 flex flex-col md:flex-row justify-between items-center border-t border-white/10 pt-8 gap-6">
-               <div className="text-sm text-gray-500 font-mono uppercase">
-                 © 2025 Sasundul Wanasinghe
+             {/* Footer Bottom Bar */}
+             <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+               <div className="flex flex-col md:flex-row items-center gap-2 md:gap-8">
+                 <span className="text-2xl font-display font-bold italic text-white tracking-tighter">SW</span>
+                 <p className="text-sm text-slate-500 font-mono uppercase">
+                   © 2025 Sasundul Wanasinghe. All rights reserved.
+                 </p>
                </div>
                
-               <div className="flex gap-6">
-                   <a href="#" className="text-gray-400 hover:text-wa-green transition-colors"><Github /></a>
-                   <a href="#" className="text-gray-400 hover:text-wa-green transition-colors"><Linkedin /></a>
-                   <a href="#" className="text-gray-400 hover:text-wa-green transition-colors"><MapPin /></a>
-               </div>
+               <button 
+                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                 className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-slate-500 hover:text-wa-green transition-colors"
+               >
+                 Back to Top <ArrowUp size={16} />
+               </button>
              </div>
+
            </div>
         </footer>
       </div>
