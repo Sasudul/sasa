@@ -2,7 +2,6 @@ import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion'
 import {
   ArrowUp,
   ArrowUpRight,
-  ChevronLeft,
   ChevronRight,
   Copy,
   ExternalLink,
@@ -18,7 +17,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import { SplashScreen } from './components/SplashScreen';
 import { ThemeToggle } from './components/ThemeToggle';
-import { ExperienceItem, NavLink, Project, Skill } from './types';
+import { ExperienceItem, NavLink, Skill } from './types';
 
 // --- Data Constants ---
 const PROFILE_IMAGE_URL = "https://avatars.githubusercontent.com/u/158804448?s=400&u=8edbb46c2957de94b2e962060f06cccea207867c&v=4";
@@ -41,65 +40,62 @@ const SKILLS: Skill[] = [
   { name: 'Docker', level: 'Basics', category: 'Tools' },
 ];
 
-const PROJECTS: Project[] = [
+// UPDATED: Added IDs and Featured boolean for the new layout logic
+const PROJECTS = [
   {
+    id: 1,
     title: "SENERATH PHARMACY",
     category: "ENTERPRISE",
     description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
     tech: ["React", "PostgreSQL", "Spring Boot"],
-    image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/21daf6206621873.66cf6dbb8c24f.png?q=80&w=1200&auto=format&fit=crop"
+    image: "https://mir-s3-cdn-cf.behance.net/project_modules/max_3840/21daf6206621873.66cf6dbb8c24f.png?q=80&w=1200&auto=format&fit=crop",
+    featured: true
   },
   {
+    id: 2,
     title: "FLEET TRACKING",
     category: "LOGISTICS",
     description: "Real-time vehicle monitoring interface utilizing Google Maps API and WebSocket integration.",
     tech: ["React", "Firebase", "Google Maps"],
-    image: "https://th.bing.com/th/id/R.c55e51265b71a0b554f38848d3057b27?rik=9MG3FyMQ2i%2bc%2bg&pid=ImgRaw&r=0?q=80&w=1200&auto=format&fit=crop"
+    image: "https://th.bing.com/th/id/R.c55e51265b71a0b554f38848d3057b27?rik=9MG3FyMQ2i%2bc%2bg&pid=ImgRaw&r=0?q=80&w=1200&auto=format&fit=crop",
+    featured: true
   },
   {
+    id: 3,
     title: "LANDSLIDE WARNING",
     category: "IOT / EMBEDDED",
     description: "Automated alert system processing data from hardware sensors to detect environmental anomalies.",
     tech: ["C++", "IoT Sensors", "Data Analysis"],
-    image: "https://i.ytimg.com/vi/5wjgNQAs8Mw/maxresdefault.jpg?q=80&w=1200&auto=format&fit=crop"
+    image: "https://i.ytimg.com/vi/5wjgNQAs8Mw/maxresdefault.jpg?q=80&w=1200&auto=format&fit=crop",
+    featured: true
   },
   {
+    id: 4,
     title: "NATO MINI MART",
     category: "E-COMMERCE",
     description: "Digital transformation project migrating a physical retail store to a custom web platform.",
     tech: ["PHP", "MySQL", "Bootstrap"],
-    image: "https://tse2.mm.bing.net/th/id/OIP.H8W2js8zv6YDePBJ776v0AAAAA?w=412&h=480&rs=1&pid=ImgDetMain&o=7&rm=3?q=80&w=1200&auto=format&fit=crop"
-  },{
-    title: "Pizza Mania",
-    category: "ENTERPRISE",
-    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
+    image: "https://tse2.mm.bing.net/th/id/OIP.H8W2js8zv6YDePBJ776v0AAAAA?w=412&h=480&rs=1&pid=ImgDetMain&o=7&rm=3?q=80&w=1200&auto=format&fit=crop",
+    featured: false
+  },
+  {
+    id: 5,
+    title: "Pizza Mania Mobile",
+    category: "MOBILE APP",
+    description: "Mobile application redesign focusing on user experience and order flow optimization.",
     tech: ["XML", "JAVA", "SQLite"],
-    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
-    },{
-    title: "Pizza Mania",
+    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop",
+    featured: true
+  },
+  {
+    id: 6,
+    title: "Pizza Mania Admin",
     category: "ENTERPRISE",
-    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
+    description: "Backend administration panel for managing orders and menu items.",
     tech: ["XML", "JAVA", "SQLite"],
-    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
-    },{
-    title: "Pizza Mania",
-    category: "ENTERPRISE",
-    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
-    tech: ["XML", "JAVA", "SQLite"],
-    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
-    },{
-    title: "Pizza Mania",
-    category: "ENTERPRISE",
-    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
-    tech: ["XML", "JAVA", "SQLite"],
-    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
-    },{
-    title: "Pizza Mania",
-    category: "ENTERPRISE",
-    description: "Comprehensive management suite for high-volume pharmacies featuring real-time inventory synchronization.",
-    tech: ["XML", "JAVA", "SQLite"],
-    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop"
-    }
+    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop",
+    featured: false
+  }
 ];
 
 const EXPERIENCE: ExperienceItem[] = [
@@ -218,32 +214,16 @@ const Navbar: React.FC = () => {
 
 // --- Main App ---
 
-const ITEMS_PER_PAGE = 4;
-
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
 
-  // --- Pagination State ---
-  const [currentPage, setCurrentPage] = useState(1);
-  
-  // Calculate Pagination Logic
-  const totalPages = Math.ceil(PROJECTS.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentProjects = PROJECTS.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  // --- NEW: Projects Section State ---
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [filter, setFilter] = useState('FEATURED');
 
-  const handleNext = () => {
-    if (currentPage < totalPages) setCurrentPage(prev => prev + 1);
-  };
-
-  const handlePrev = () => {
-    if (currentPage > 1) setCurrentPage(prev => prev - 1);
-  };
-
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-  };
+  const filteredProjects = filter === 'ALL' ? PROJECTS : PROJECTS.filter(p => p.featured);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
@@ -335,130 +315,181 @@ const App: React.FC = () => {
 
         <Marquee />
 
-        {/* My Works Section */}
-        <section id="projects" className="py-24 md:py-32 relative bg-white dark:bg-wa-dark">
+        {/* --- REPLACED: My Works Section (Grid + Popout) --- */}
+        <section id="projects" className="py-24 bg-[#111] text-white relative overflow-hidden">
           <div className="container mx-auto px-6">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-6">
+            
+            {/* Header Section */}
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-white/10 pb-6">
               <div>
-                <h2 className="text-5xl md:text-7xl font-display font-bold text-slate-900 dark:text-white mb-2">
-                  MY <span className="text-wa-green">WORKS</span>
-                </h2>
-                <div className="h-2 w-24 bg-wa-green"></div>
+                <h2 className="text-sm font-bold text-gray-400 tracking-widest uppercase mb-2">Check it Out</h2>
+                <h1 className="text-4xl md:text-6xl font-display font-bold uppercase tracking-tighter">
+                  Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-600">Projects</span>
+                </h1>
               </div>
-              <p className="text-slate-600 dark:text-wa-gray max-w-sm text-right">
-                A showcase of high-performance applications and digital experiences developed with precision.
-              </p>
+              
+              <div className="flex gap-4 text-sm font-bold tracking-wider mt-6 md:mt-0">
+                <span className="text-gray-500">View:</span>
+                <button 
+                  onClick={() => setFilter('FEATURED')} 
+                  className={`${filter === 'FEATURED' ? 'text-white border-b-2 border-green-500' : 'text-gray-500 hover:text-white'} transition-colors`}
+                >
+                  FEATURED
+                </button>
+                <span className="text-gray-700">|</span>
+                <button 
+                  onClick={() => setFilter('ALL')} 
+                  className={`${filter === 'ALL' ? 'text-white border-b-2 border-green-500' : 'text-gray-500 hover:text-white'} transition-colors`}
+                >
+                  ALL
+                </button>
+              </div>
             </div>
 
-            {/* Pagination Grid Wrapper */}
-            <div className="min-h-[800px]">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-                  <AnimatePresence mode="wait">
-                    {currentProjects.map((project, idx) => (
-                      <motion.div
-                        key={`${currentPage}-${idx}`} // Force re-render on page change
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ delay: idx * 0.1, duration: 0.6 }}
-                        className="group relative"
+            {/* The Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              <AnimatePresence mode="popLayout">
+                {filteredProjects.map((project) => (
+                  <motion.div
+                    key={project.id}
+                    layoutId={`card-${project.id}`} // KEY for smooth transition
+                    onClick={() => setSelectedProject(project)}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    whileHover={{ scale: 1.02 }}
+                    className="group relative aspect-[4/3] cursor-pointer overflow-hidden rounded-xl bg-gray-900 border border-white/5 shadow-xl"
+                  >
+                    {/* Background Image */}
+                    <motion.img 
+                      layoutId={`image-${project.id}`}
+                      src={project.image} 
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                    />
+
+                    {/* Dark Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+
+                    {/* Featured Ribbon */}
+                    {project.featured && (
+                      <div className="absolute top-4 right-[-30px] rotate-45 bg-yellow-400 text-black text-[10px] font-bold py-1 px-10 shadow-lg z-10">
+                        FEATURED
+                      </div>
+                    )}
+
+                    {/* Content Details (Card) */}
+                    <div className="absolute bottom-0 left-0 p-6 w-full">
+                      <motion.p 
+                        layoutId={`cat-${project.id}`}
+                        className="text-green-400 text-xs font-bold tracking-widest uppercase mb-2"
                       >
-                        {/* Card Container with Tilt Effect Mockup */}
-                        <div className="relative w-full aspect-[4/3] bg-slate-100 dark:bg-wa-card rounded-xl overflow-hidden mb-8 perspective-1000 group-hover:shadow-2xl group-hover:shadow-wa-green/20 transition-all duration-500">
-                          
-                          {/* Background Pattern */}
-                          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#25D366_1px,transparent_1px)] [background-size:16px_16px]"></div>
-
-                          {/* The "Elevated" Preview Image */}
-                          <div className="absolute inset-8 transform group-hover:scale-105 group-hover:-rotate-1 transition-all duration-700 ease-out origin-bottom">
-                             <div className="w-full h-full relative rounded-lg overflow-hidden shadow-2xl border border-black/10 dark:border-white/10 bg-slate-800">
-                                <img 
-                                  src={project.image} 
-                                  alt={project.title}
-                                  className="w-full h-full object-cover"
-                                />
-                                {/* Screen Reflection Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
-                             </div>
-                          </div>
-
-                          {/* Overlay Tag */}
-                          <div className="absolute top-6 right-6 z-20">
-                            <div className="bg-wa-green text-wa-dark font-bold text-xs px-3 py-1 uppercase tracking-wider rounded-sm">
-                              {project.category}
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Project Info */}
-                        <div className="flex flex-col gap-2">
-                          <h3 className="text-3xl font-display font-bold text-slate-900 dark:text-white group-hover:text-wa-green transition-colors flex items-center gap-3">
-                            {project.title}
-                            <ExternalLink size={20} className="opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-1" />
-                          </h3>
-                          <p className="text-slate-600 dark:text-wa-gray line-clamp-2 mb-4">
-                            {project.description}
-                          </p>
-                          <div className="flex flex-wrap gap-2">
-                            {project.tech.map((t, i) => (
-                              <span key={i} className="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-500 border border-slate-200 dark:border-white/10 px-2 py-1">
-                                {t}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </AnimatePresence>
-                </div>
+                        {project.category}
+                      </motion.p>
+                      <motion.h3 
+                        layoutId={`title-${project.id}`}
+                        className="text-2xl font-bold uppercase tracking-tight text-white mb-1 group-hover:text-green-400 transition-colors"
+                      >
+                        {project.title}
+                      </motion.h3>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
             </div>
+          </div>
 
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-              <div className="mt-20 flex flex-col md:flex-row justify-center items-center gap-6">
-                
-                {/* Previous Button */}
-                <button
-                  onClick={handlePrev}
-                  disabled={currentPage === 1}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs transition-all
-                  ${currentPage === 1 
-                    ? 'opacity-50 cursor-not-allowed text-slate-400' 
-                    : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-900 dark:text-white'}`}
+          {/* THE POP-OUT MODAL */}
+          <AnimatePresence>
+            {selectedProject && (
+              <div className="fixed inset-0 z-[100] flex items-center justify-center px-4">
+                {/* Backdrop */}
+                <motion.div 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute inset-0 bg-black/90 backdrop-blur-md"
+                />
+
+                {/* Modal Content */}
+                <motion.div
+                  layoutId={`card-${selectedProject.id}`}
+                  className="relative w-full max-w-4xl bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col md:flex-row max-h-[90vh]"
                 >
-                  <ChevronLeft size={16} /> Prev
-                </button>
+                  <button 
+                    onClick={(e) => { e.stopPropagation(); setSelectedProject(null); }}
+                    className="absolute top-4 right-4 z-20 bg-black/50 hover:bg-white/20 p-2 rounded-full text-white transition-colors"
+                  >
+                    <X size={20} />
+                  </button>
 
-                {/* Page Numbers */}
-                <div className="flex gap-2">
-                  {[...Array(totalPages)].map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => handlePageChange(i + 1)}
-                      className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm transition-all
-                      ${currentPage === i + 1
-                        ? 'bg-wa-green text-wa-dark shadow-lg shadow-wa-green/20 scale-110' 
-                        : 'bg-slate-100 dark:bg-white/5 text-slate-500 hover:bg-slate-200 dark:hover:bg-white/10'}`}
+                  {/* Left: Image Section */}
+                  <div className="w-full md:w-3/5 relative h-64 md:h-auto">
+                    <motion.img 
+                      layoutId={`image-${selectedProject.id}`}
+                      src={selectedProject.image} 
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 to-transparent md:bg-gradient-to-r" />
+                  </div>
+
+                  {/* Right: Details Section */}
+                  <div className="w-full md:w-2/5 p-8 flex flex-col justify-center bg-zinc-900">
+                    <motion.p 
+                      layoutId={`cat-${selectedProject.id}`}
+                      className="text-green-400 text-sm font-bold tracking-widest uppercase mb-3"
                     >
-                      {i + 1}
-                    </button>
-                  ))}
-                </div>
+                      {selectedProject.category}
+                    </motion.p>
 
-                {/* Next Button */}
-                <button
-                  onClick={handleNext}
-                  disabled={currentPage === totalPages}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs transition-all
-                  ${currentPage === totalPages 
-                    ? 'opacity-50 cursor-not-allowed text-slate-400' 
-                    : 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-900 dark:text-white'}`}
-                >
-                  Next <ChevronRight size={16} />
-                </button>
+                    <motion.h2 
+                      layoutId={`title-${selectedProject.id}`}
+                      className="text-4xl font-display font-bold text-white mb-6 uppercase leading-none"
+                    >
+                      {selectedProject.title}
+                    </motion.h2>
+
+                    <motion.p 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-gray-400 leading-relaxed mb-8"
+                    >
+                      {selectedProject.description}
+                    </motion.p>
+
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="flex flex-wrap gap-2 mb-8"
+                    >
+                      {selectedProject.tech.map((t, i) => (
+                        <span key={i} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-gray-300">
+                          {t}
+                        </span>
+                      ))}
+                    </motion.div>
+
+                    <motion.div 
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="flex gap-4"
+                    >
+                      <button className="flex-1 bg-green-500 hover:bg-green-600 text-black font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-transform active:scale-95">
+                        View Live <ExternalLink size={18} />
+                      </button>
+                      <button className="flex-1 bg-white/10 hover:bg-white/20 text-white font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 transition-colors">
+                        Code <Github size={18} />
+                      </button>
+                    </motion.div>
+                  </div>
+                </motion.div>
               </div>
             )}
-          </div>
+          </AnimatePresence>
         </section>
 
         {/* Skills Section*/}
@@ -540,7 +571,7 @@ const App: React.FC = () => {
 
         {/* Contact / Footer */}
         <footer id="contact" className="bg-slate-900 dark:bg-[#050b0e] text-white pt-24 pb-12 relative overflow-hidden border-t border-white/10">
-           
+            
            {/* Background Grid Pattern */}
            <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] [background-size:24px_24px]"></div>
            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-slate-900/80 dark:to-[#050b0e] pointer-events-none"></div>
