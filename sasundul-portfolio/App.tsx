@@ -40,7 +40,6 @@ const SKILLS: Skill[] = [
   { name: 'Docker', level: 'Basics', category: 'Tools' },
 ];
 
-// UPDATED: Added IDs and Featured boolean for the new layout logic
 const PROJECTS = [
   {
     id: 1,
@@ -86,46 +85,29 @@ const PROJECTS = [
     tech: ["XML", "JAVA", "SQLite"],
     image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop",
     featured: true
-  },
-  {
-    id: 6,
-    title: "Pizza Mania Admin",
-    category: "ENTERPRISE",
-    description: "Backend administration panel for managing orders and menu items.",
-    tech: ["XML", "JAVA", "SQLite"],
-    image: "https://cdn.dribbble.com/users/6835304/screenshots/17832684/pizza_hut_-_mobile_app_redesign.png?q=80&w=1200&auto=format&fit=crop",
-    featured: false
   }
 ];
 
 const EXPERIENCE: ExperienceItem[] = [
-  {
-    year: '2025 - Present',
-    title: 'Lead Developer',
-    org: 'Senerath Pharmacy Project',
-    desc: 'Architecting full-stack solutions and leading development teams.'
-  },
   {
     year: '2024 - 2025',
     title: 'Project Lead',
     org: 'Nato Mini Mart',
     desc: 'Directed technical transition from physical to digital retail.'
   },
-  {
-    year: '2023',
-    title: 'Software Eng.',
-    org: 'NIBM',
-    desc: 'Foundational certification in OOP and SDLC methodologies.'
-  },
+ 
   {
     year: 'Expected 2027',
     title: 'BSc Comp Sci',
     org: 'NIBM',
     desc: 'Focusing on Distributed Systems and Software Engineering.'
+  }, {
+    year: '2023',
+    title: 'Software Eng.',
+    org: 'NIBM',
+    desc: 'Foundational certification in OOP and SDLC methodologies.'
   }
 ];
-
-// --- Sub-Components ---
 
 const Marquee = () => (
   <div className="relative flex overflow-hidden bg-wa-green py-3 md:py-4 transform -skew-y-2 border-y-4 border-black dark:border-white">
@@ -627,7 +609,7 @@ const App: React.FC = () => {
                       {[
                         { icon: <Github size={24} />, label: "GitHub", href: "https://github.com/Sasudul" },
                         { icon: <Linkedin size={24} />, label: "LinkedIn", href: "https://www.linkedin.com/in/sasundul/" },
-                        { icon: <MessageCircle size={24} />, label: "WhatsApp", href: "https://wa.me/940629020" },
+                        { icon: <MessageCircle size={24} />, label: "WhatsApp", href: "https://wa.me/+94740629020" },
                         { icon: <Mail size={24} />, label: "Email", href: "mailto:sasuduln@gmail.com" }
                       ].map((social, idx) => (
                         <a 
