@@ -17,7 +17,7 @@ export interface ExperienceItem {
 export interface Skill {
   name: string;
   level: string;
-  category: 'Frontend' | 'Backend' | 'Tools' | 'Mobile';
+  category: 'Frontend' | 'Backend' | 'UI/UX Design' | 'Mobile';
 }
 
 export interface NavLink {
