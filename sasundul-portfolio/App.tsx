@@ -2,11 +2,24 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ReactLenis } from 'lenis/react';
-import { ArrowUpRight, Github, Linkedin, MessageCircle } from 'lucide-react';
+import { ArrowUpRight, Github, Linkedin, X } from 'lucide-react';
 import React, { useRef, useState } from 'react';
 import ProjectsPage from './components/ProjectsPage';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const WhatsApp = ({ size = 24, className = "" }: { size?: number; className?: string }) => (
+  <svg 
+    xmlns="http://www.w3.org/2000/svg" 
+    viewBox="0 0 16 16" 
+    fill="currentColor" 
+    className={className} 
+    width={size} 
+    height={size}
+  >
+    <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
+  </svg>
+);
 
 const PROFILE_IMAGE_URL = "https://avatars.githubusercontent.com/u/158804448?s=400&u=8edbb46c2957de94b2e962060f06cccea207867c&v=4";
 
@@ -123,6 +136,7 @@ function PortfolioHome({ onShowAll }: { onShowAll: () => void }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const bgTextRef = useRef<HTMLDivElement>(null);
   const footerTextRef = useRef<HTMLHeadingElement>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
   
   // Custom Cursor Refs
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -650,11 +664,12 @@ function PortfolioHome({ onShowAll }: { onShowAll: () => void }) {
                </h2>
              </div>
 
-             <div className="space-y-40">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24 items-start">
                {PROJECTS.slice(0, 2).map((p, idx) => (
-                  <div key={idx} className="project-card group relative grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 md:gap-20 items-center">
+                  <div key={idx} className="project-card group flex flex-col h-full">
                     
-                    <div className="overflow-hidden rounded-3xl aspect-[4/3] bg-[#111] w-full relative border border-white/5 project-img-container" 
+                    <div className="overflow-hidden rounded-3xl aspect-[4/3] bg-[#141414] w-full relative border border-white/10 project-img-container cursor-pointer mb-8 animate-fadeIn" 
+                         onClick={() => setSelectedImage(p.image)}
                          onMouseEnter={(e) => {
                            const img = e.currentTarget.querySelector('img');
                            if(img) img.style.filter = "url(#liquid-distort)";
@@ -664,20 +679,19 @@ function PortfolioHome({ onShowAll }: { onShowAll: () => void }) {
                            if(img) img.style.filter = "grayscale(0)";
                          }}
                     >
-                      <img src={p.image} alt={p.title} className="project-img w-full h-[130%] object-cover absolute top-[-15%] left-0 grayscale-[0.5] group-hover:grayscale-0 group-hover:scale-105 transition-transform duration-[1.5s]" />
+                      <img src={p.image} alt={p.title} className="project-img w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-105 transition-transform duration-[1.5s]" />
+                      {/* Hover Visual hint */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-6">
+                        <span className="text-xs font-bold uppercase tracking-widest text-white/90 bg-black/60 px-4 py-2 rounded-full backdrop-blur-md">Click to Expand</span>
+                      </div>
                     </div>
                     
-                    <div className="flex flex-col justify-center">
-                      <div className="text-[#a890ff] text-sm uppercase font-bold tracking-widest mb-6 flex items-center gap-4">
-                        <span className="w-12 h-[2px] bg-[#a890ff]"></span>
+                    <div className="flex flex-col flex-grow">
+                      <div className="text-[#a890ff] text-xs uppercase font-bold tracking-widest mb-4 flex items-center gap-3">
+                        <span className="w-8 h-[2px] bg-[#a890ff]"></span>
                         {p.category}
                       </div>
-                      <h3 className="text-5xl md:text-7xl font-display font-bold uppercase tracking-tighter mb-6 group-hover:text-[#a890ff] transition-colors duration-500">{p.title}</h3>
-                      <p className="text-gray-400 font-mono text-sm md:text-base font-semibold uppercase mb-12">{p.tech}</p>
-                      
-                      <button className="magnetic flex items-center gap-4 text-xl font-bold uppercase tracking-widest w-fit border-b-2 border-transparent group-hover:border-[#f1f1f1] transition-all pb-2 origin-left scale-x-0 group-hover:scale-x-100 duration-500 cursor-none">
-                        Explore Project <ArrowUpRight size={28} />
-                      </button>
+                      <h2 className="text-4xl font-display font-bold uppercase tracking-tighter group-hover:text-[#a890ff] transition-colors duration-500">{p.title}</h2>
                     </div>
 
                   </div>
@@ -742,7 +756,7 @@ function PortfolioHome({ onShowAll }: { onShowAll: () => void }) {
                 {[
                   { icon: <Github size={28} />, label: "GitHub", href: "https://github.com/Sasudul" },
                   { icon: <Linkedin size={28} />, label: "LinkedIn", href: "https://www.linkedin.com/in/sasundul/" },
-                  { icon: <MessageCircle size={28} />, label: "WhatsApp", href: "https://wa.me/+94740629020" },
+                  { icon: <WhatsApp size={28} />, label: "WhatsApp", href: "https://wa.me/+94740629020" },
                 ].map((social, idx) => (
                   <a 
                     key={idx}
@@ -766,6 +780,27 @@ function PortfolioHome({ onShowAll }: { onShowAll: () => void }) {
              </div>
           </div>
         </footer>
+
+        {/* Lightbox Popout Modal for Home */}
+        {selectedImage && (
+          <div 
+            className="fixed inset-0 z-[100] bg-black/98 flex items-center justify-center p-4 backdrop-blur-md cursor-pointer"
+            onClick={() => setSelectedImage(null)}
+          >
+            <button 
+              onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
+              className="absolute top-8 right-8 text-white hover:text-[#a890ff] p-3 bg-white/10 hover:bg-white/20 rounded-full transition-all hover:rotate-90 z-10 shadow-lg"
+            >
+              <X size={28} />
+            </button>
+            <div 
+              className="relative max-w-6xl max-h-[90vh] overflow-hidden rounded-2xl border border-white/10 shadow-[0_0_80px_rgba(168,144,255,0.25)] bg-[#111] cursor-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img src={selectedImage} alt="Expanded Project" className="max-w-full max-h-[90vh] object-contain block mx-auto" />
+            </div>
+          </div>
+        )}
 
       </div>
     </ReactLenis>

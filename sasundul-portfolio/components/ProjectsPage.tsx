@@ -1,8 +1,8 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ArrowLeft, ArrowUpRight } from 'lucide-react';
-import React, { useRef } from 'react';
+import { ArrowLeft, ArrowUpRight, X } from 'lucide-react';
+import React, { useRef, useState } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,14 +21,13 @@ interface ProjectsPageProps {
 
 export default function ProjectsPage({ projects, onBack }: ProjectsPageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   useGSAP(() => {
-    // Scroll to top when loaded
     window.scrollTo(0, 0);
 
     const tl = gsap.timeline();
 
-    // Entrance animation
     tl.from('.proj-header', {
       y: 100,
       opacity: 0,
@@ -43,7 +42,6 @@ export default function ProjectsPage({ projects, onBack }: ProjectsPageProps) {
       ease: 'power3.out',
     }, "-=0.5");
 
-    // Scroll trigger for projects
     const items = gsap.utils.toArray('.proj-grid-item');
     items.forEach((item: any) => {
       gsap.fromTo(item.querySelector('.proj-img-wrap'),
@@ -83,24 +81,35 @@ export default function ProjectsPage({ projects, onBack }: ProjectsPageProps) {
           <p className="text-gray-400 mt-6 max-w-xl font-mono text-sm uppercase">An extensive archive of design engineering, robust full-stack solutions, and digital explorations.</p>
         </div>
 
-        {/* 2-Column Grid Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
+        {/* 2-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24 items-start">
           {projects.map((p) => (
-            <div key={p.id} className="proj-grid-item group">
-              <div className="proj-img-wrap overflow-hidden rounded-3xl aspect-[4/3] bg-[#111] mb-8 relative border border-white/5">
+            <div key={p.id} className="proj-grid-item group h-full flex flex-col">
+              {/* Click image to expand */}
+              <div 
+                onClick={() => setSelectedImage(p.image)}
+                className="proj-img-wrap overflow-hidden rounded-3xl aspect-[4/3] bg-[#141414] mb-8 relative border border-white/10 shadow-xl hover:shadow-[#a890ff]/10 hover:border-[#a890ff]/30 transition-all duration-500 cursor-pointer flex items-center justify-center p-4 group-hover:bg-[#1a1a1a]"
+              >
+                {/* Image is styled to cover nicely but respect bounds */}
                 <img 
                   src={p.image} 
                   alt={p.title} 
-                  className="w-full h-full object-cover grayscale-[0.5] group-hover:grayscale-0 group-hover:scale-110 transition-transform duration-[1.5s]" 
+                  className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[1.5s] rounded-2xl" 
                 />
+                
+                {/* Hover Visual hint */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-6">
+                    <span className="text-xs font-bold uppercase tracking-widest text-white/80 bg-black/40 px-4 py-2 rounded-full backdrop-blur-md">Click to Expand</span>
+                </div>
               </div>
-              <div className="flex flex-col">
+
+              <div className="flex flex-col flex-grow">
                 <div className="text-[#a890ff] text-xs uppercase font-bold tracking-widest mb-4 flex items-center gap-3">
                   <span className="w-8 h-[2px] bg-[#a890ff]"></span>
                   {p.category}
                 </div>
                 <h3 className="text-4xl font-display font-bold uppercase tracking-tighter mb-4 group-hover:text-[#a890ff] transition-colors">{p.title}</h3>
-                <p className="text-gray-400 font-mono text-xs uppercase mb-8">{p.tech}</p>
+                <p className="text-gray-400 font-mono text-xs uppercase mb-8 mt-auto">{p.tech}</p>
                 
                 <button className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest w-fit border-b border-transparent group-hover:border-[#f1f1f1] transition-all pb-1 cursor-pointer">
                   Explore Project <ArrowUpRight size={20} />
@@ -111,6 +120,27 @@ export default function ProjectsPage({ projects, onBack }: ProjectsPageProps) {
         </div>
 
       </div>
+
+      {/* Lightbox Popout Modal */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/98 flex items-center justify-center p-4 backdrop-blur-md cursor-auto"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
+            className="absolute top-8 right-8 text-white hover:text-[#a890ff] p-3 bg-white/10 hover:bg-white/20 rounded-full transition-all hover:rotate-90 z-10 cursor-pointer shadow-lg"
+          >
+            <X size={28} />
+          </button>
+          <div 
+            className="relative max-w-6xl max-h-[90vh] overflow-hidden rounded-2xl border border-white/10 shadow-[0_0_80px_rgba(168,144,255,0.25)] bg-[#111]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img src={selectedImage} alt="Expanded Project View" className="max-w-full max-h-[90vh] object-contain block mx-auto" />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
