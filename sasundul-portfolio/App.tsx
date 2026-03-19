@@ -3,68 +3,70 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ReactLenis } from 'lenis/react';
 import { ArrowUpRight, Github, Linkedin, MessageCircle } from 'lucide-react';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import ProjectsPage from './components/ProjectsPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const PROFILE_IMAGE_URL = "https://avatars.githubusercontent.com/u/158804448?s=400&u=8edbb46c2957de94b2e962060f06cccea207867c&v=4";
 
-const PROJECTS = [
+export const PROJECTS = [
   {
     id: 1,
     title: "FLOODNAV",
     category: "DISASTER RESPONSE",
     tech: "React • TypeScript • Spring Boot",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80",
+    image: "/FloodNav-1.png",
   },
   {
     id: 2,
-    title: "PIZZAMANIA",
-    category: "MOBILE APP",
-    tech: "Java • SQLite • Firebase",
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80",
+     title: "VAP CONSTRUCTION",
+    category: "PORTFOLIO",
+    tech: "React.js • Tailwind CSS",
+    image: "/Vap-Construction-1.jpeg",
+  
   },
   {
     id: 3,
     title: "BUDGETLY",
     category: "PERSONAL FINANCE",
     tech: "Expense Tracking • Budgeting",
-    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1200&q=80",
+    image: "/Budgetly-1.jpeg",
   },
   {
     id: 4,
-    title: "VAP CONSTRUCTION",
-    category: "PORTFOLIO",
-    tech: "React.js • Tailwind CSS",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
+      title: "PIZZAMANIA",
+    category: "MOBILE APP",
+    tech: "Java • SQLite • Firebase",
+    image: "/Pizza-Mania-1.jpeg",
   },
   {
     id: 5,
     title: "MEDCONNECT",
     category: "HEALTHCARE",
     tech: "React • Spring Boot • MySQL",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&q=80",
+    image: "/E-channeling-System-1.jpeg",
   },
   {
     id: 6,
     title: "LUMINA",
     category: "AUTOMOTIVE",
     tech: "Vue.js • Tailwind • Framer Motion",
-    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&q=80",
+    image: "/Lumina-1.jpeg",
   },
   {
     id: 7,
     title: "NEXMART",
     category: "SALES MANAGEMENT",
     tech: "Java Swing • MySQL",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80",
+    image: "/NexMart -1.png",
   },
   {
     id: 8,
     title: "HOTELX",
     category: "HOSPITALITY",
     tech: "Java Swing • MySQL",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80",
+    image: "/Art-Gallery-01.jpeg",
   }
 ];
 
@@ -103,6 +105,20 @@ const SplitTextChars = ({ text, className = "", charClass = "char-element" }: { 
 };
 
 export default function App() {
+  const [showAllProjects, setShowAllProjects] = useState(false);
+
+  return (
+    <>
+      {showAllProjects ? (
+        <ProjectsPage projects={PROJECTS} onBack={() => setShowAllProjects(false)} />
+      ) : (
+        <PortfolioHome onShowAll={() => setShowAllProjects(true)} />
+      )}
+    </>
+  );
+}
+
+function PortfolioHome({ onShowAll }: { onShowAll: () => void }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const bgTextRef = useRef<HTMLDivElement>(null);
@@ -635,7 +651,7 @@ export default function App() {
              </div>
 
              <div className="space-y-40">
-               {PROJECTS.map((p, idx) => (
+               {PROJECTS.slice(0, 2).map((p, idx) => (
                   <div key={idx} className="project-card group relative grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-12 md:gap-20 items-center">
                     
                     <div className="overflow-hidden rounded-3xl aspect-[4/3] bg-[#111] w-full relative border border-white/5 project-img-container" 
@@ -649,11 +665,6 @@ export default function App() {
                          }}
                     >
                       <img src={p.image} alt={p.title} className="project-img w-full h-[130%] object-cover absolute top-[-15%] left-0 grayscale-[0.5] group-hover:grayscale-0 group-hover:scale-105 transition-transform duration-[1.5s]" />
-                      
-                      {/* Hover Overlay Title inside Image */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-black/40 backdrop-blur-sm transition-all duration-500 z-10 pointer-events-none">
-                         <h3 className="text-5xl font-display font-bold uppercase tracking-tighter text-white translate-y-10 group-hover:translate-y-0 transition-transform duration-500">View Live</h3>
-                      </div>
                     </div>
                     
                     <div className="flex flex-col justify-center">
@@ -671,6 +682,13 @@ export default function App() {
 
                   </div>
                ))}
+             </div>
+
+             <div className="w-full flex justify-center mt-32">
+               <button onClick={onShowAll} className="magnetic px-12 py-6 rounded-full border border-white/20 text-[#f1f1f1] uppercase tracking-widest font-bold font-mono hover:bg-[#f1f1f1] hover:text-[#0a0a0a] transition-colors duration-500 flex items-center gap-4 group cursor-none">
+                 View All Projects
+                 <ArrowUpRight className="group-hover:rotate-45 transition-transform duration-500" />
+               </button>
              </div>
           </div>
         </section>
